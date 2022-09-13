@@ -1,0 +1,396 @@
+body
+{
+   background-color: #FFFFFF;
+   color: #000000;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   line-height: 1.1875;
+   margin: 0;
+   padding: 0;
+}
+a
+{
+   color: #0000FF;
+   text-decoration: underline;
+}
+a:visited
+{
+   color: #800080;
+}
+a:active
+{
+   color: #FF0000;
+}
+a:hover
+{
+   color: #0000FF;
+   text-decoration: underline;
+}
+input:focus, textarea:focus, select:focus
+{
+   outline: none;
+}
+#wb_vortex
+{
+   vertical-align: top;
+}
+#vortex
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars1
+{
+   vertical-align: top;
+}
+#stars1
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars2
+{
+   vertical-align: top;
+}
+#stars2
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars3
+{
+   vertical-align: top;
+}
+#stars3
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars4
+{
+   vertical-align: top;
+}
+#stars4
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars5
+{
+   vertical-align: top;
+}
+#stars5
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars6
+{
+   vertical-align: top;
+}
+#stars6
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_About
+{
+   vertical-align: top;
+}
+#About
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 5000ms linear 0ms infinite normal both;
+   animation: transform-3d-flip 5000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Music
+{
+   vertical-align: top;
+}
+#Music
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 3000ms linear 0ms infinite alternate-reverse both;
+   animation: transform-3d-flip 3000ms linear 0ms infinite alternate-reverse both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Gallery
+{
+   vertical-align: top;
+}
+#Gallery
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
+   animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_CD
+{
+   vertical-align: top;
+}
+#CD
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_nogozone
+{
+   vertical-align: top;
+}
+#nogozone
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Warning
+{
+   vertical-align: top;
+}
+#Warning
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AboutBG
+{
+   vertical-align: top;
+}
+#AboutBG
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_BansheeAv
+{
+   vertical-align: top;
+}
+#BansheeAv
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_PlushName
+{
+   vertical-align: top;
+}
+#PlushName
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: heartbeat-1 1000ms linear 0ms infinite normal both;
+   animation: heartbeat-1 1000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_BansheeName
+{
+   vertical-align: top;
+}
+#BansheeName
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: heartbeat-2 1000ms linear 0ms infinite normal both;
+   animation: heartbeat-2 1000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_PlushBansheeText
+{
+   vertical-align: top;
+}
+#PlushBansheeText
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_plumbob
+{
+   vertical-align: top;
+}
+#plumbob
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Home
+{
+   vertical-align: top;
+}
+#Home
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-diagonal 2000ms linear 0ms infinite normal both;
+   animation: transform-diagonal 2000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#BGMusic
+{
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AG1kAV
+{
+   vertical-align: top;
+}
+#AG1kAV
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: push 3000ms linear 0ms infinite normal both;
+   animation: push 3000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AG1K
+{
+   vertical-align: top;
+}
+#AG1K
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: animate-flash 1000ms linear 0ms infinite normal both;
+   animation: animate-flash 1000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AG1kText
+{
+   vertical-align: top;
+}
+#AG1kText
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_BansheeText2
+{
+   vertical-align: top;
+}
+#BansheeText2
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
