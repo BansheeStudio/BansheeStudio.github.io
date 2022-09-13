@@ -31,14 +31,217 @@ input:focus, textarea:focus, select:focus
 {
    outline: none;
 }
-#wb_Image1
+#wb_vortex
 {
    vertical-align: top;
 }
-#Image1
+#vortex
 {
    border: 0px solid #000000;
    padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars1
+{
+   vertical-align: top;
+}
+#stars1
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars2
+{
+   vertical-align: top;
+}
+#stars2
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars3
+{
+   vertical-align: top;
+}
+#stars3
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_About
+{
+   vertical-align: top;
+}
+#About
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 5000ms linear 0ms infinite normal both;
+   animation: transform-3d-flip 5000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Warning
+{
+   vertical-align: top;
+}
+#Warning
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AboutBG
+{
+   vertical-align: top;
+}
+#AboutBG
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_BansheeAv
+{
+   vertical-align: top;
+}
+#BansheeAv
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_PlushName
+{
+   vertical-align: top;
+}
+#PlushName
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: heartbeat-1 1000ms linear 0ms infinite normal both;
+   animation: heartbeat-1 1000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_BansheeName
+{
+   vertical-align: top;
+}
+#BansheeName
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: heartbeat-2 1000ms linear 0ms infinite normal both;
+   animation: heartbeat-2 1000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_PlushBansheeText
+{
+   vertical-align: top;
+}
+#PlushBansheeText
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Home
+{
+   vertical-align: top;
+}
+#Home
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-diagonal 2000ms linear 0ms infinite normal both;
+   animation: transform-diagonal 2000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#BGMusic
+{
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AG1kAV
+{
+   vertical-align: top;
+}
+#AG1kAV
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: push 3000ms linear 0ms infinite normal both;
+   animation: push 3000ms linear 0ms infinite normal both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_AG1K
+{
+   vertical-align: top;
+}
+#AG1K
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: animate-flash 1000ms linear 0ms infinite normal both;
+   animation: animate-flash 1000ms linear 0ms infinite normal both;
    margin: 0;
    left: 0;
    top: 0;
