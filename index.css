@@ -103,6 +103,36 @@ input:focus, textarea:focus, select:focus
    width: 100%;
    height: 100%;
 }
+#wb_Gallery
+{
+   vertical-align: top;
+}
+#Gallery
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
+   animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_nogozone
+{
+   vertical-align: top;
+}
+#nogozone
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 #wb_Warning
 {
    vertical-align: top;
