@@ -87,6 +87,48 @@ input:focus, textarea:focus, select:focus
    width: 100%;
    height: 100%;
 }
+#wb_stars4
+{
+   vertical-align: top;
+}
+#stars4
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars5
+{
+   vertical-align: top;
+}
+#stars5
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_stars6
+{
+   vertical-align: top;
+}
+#stars6
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 #wb_About
 {
    vertical-align: top;
@@ -129,6 +171,20 @@ input:focus, textarea:focus, select:focus
    padding: 0;
    -webkit-animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
    animation: transform-3d-flip 2000ms linear 0ms infinite reverse both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_CD
+{
+   vertical-align: top;
+}
+#CD
+{
+   border: 0px solid #000000;
+   padding: 0;
    margin: 0;
    left: 0;
    top: 0;
@@ -233,6 +289,22 @@ input:focus, textarea:focus, select:focus
 {
    border: 0px solid #000000;
    padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_plumbob
+{
+   vertical-align: top;
+}
+#plumbob
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-bounce 2000ms linear 0ms infinite normal both;
+   animation: transform-bounce 2000ms linear 0ms infinite normal both;
    margin: 0;
    left: 0;
    top: 0;
