@@ -103,6 +103,22 @@ input:focus, textarea:focus, select:focus
    width: 100%;
    height: 100%;
 }
+#wb_Music
+{
+   vertical-align: top;
+}
+#Music
+{
+   border: 0px solid #000000;
+   padding: 0;
+   -webkit-animation: transform-3d-flip 3000ms linear 0ms infinite alternate-reverse both;
+   animation: transform-3d-flip 3000ms linear 0ms infinite alternate-reverse both;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 #wb_Gallery
 {
    vertical-align: top;
