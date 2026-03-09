@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlushBanshee's Realm</title>
+	<audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+	</audio>
+    <style>
+        :root {
+            --cube-size: 150px;
+            --anim-speed: 2s;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url("background.jpg");
+            background-color: #111; /* Dark background to see sparks */
+            font-family: sans-serif;
+            cursor: grab; /* Default cursor */
+            user-select: none;
+        }
+
+        body:active {
+            cursor: grabbing;
+        }
+
+        /* UI Hint */
+        .hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            text-align: center;
+            z-index: 0;
+        }
+
+        /* The Scene Container */
+        .scene {
+            width: var(--cube-size);
+            height: var(--cube-size);
+            perspective: 1000px;
+            position: fixed; /* Allows us to move the whole cube freely */
+            will-change: transform;
+        }
+
+        /* The Cube Object */
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube var(--anim-speed) infinite linear;
+        }
+
+        /* The Faces */
+        .face {
+            position: absolute;
+            width: var(--cube-size);
+            height: var(--cube-size);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            opacity: 0.9;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+            backface-visibility: visible; /* Make them visible through each other */
+        }
+
+        /* Rainbow & Gradient Logic */
+        .face:nth-child(1) { 
+            background: linear-gradient(45deg, #ff0000, #ff7f00); 
+            transform: rotateY(0deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+        .face:nth-child(2) { 
+            background: linear-gradient(45deg, #ff7f00, #ffff00); 
+            transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+        .face:nth-child(3) { 
+            background: linear-gradient(45deg, #ffff00, #00ff00); 
+            transform: rotateY(180deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+        .face:nth-child(4) { 
+            background: linear-gradient(45deg, #00ff00, #00ffff); 
+            transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+        .face:nth-child(5) { 
+            background: linear-gradient(45deg, #00ffff, #0000ff); 
+            transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+        .face:nth-child(6) { 
+            background: linear-gradient(45deg, #0000ff, #8b00ff); 
+            transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2)); 
+        }
+
+        /* Animations */
+        @keyframes spinCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* Spark Particles */
+        .spark {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="hint">
+        <h1><img src="PlushBanshee.png"></h1>
+        <p>Welcome to my website.<br>also you can throw around the cube have fun<3</p>
+    </div>
+
+    <div class="scene" id="cubeScene">
+        <div class="cube" id="cube">
+            <div class="face"><a href="calc.html"></a></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const CUBE_SIZE = 150; // Must match CSS --cube-size
+        const BOUNCE_FACTOR = 0.85; // Energy kept after bounce (0 to 1), default 
+        const FRICTION = 0.995; // Air resistance
+        const GRAVITY = 0.1; // Slight downward pull
+        const SPARK_COUNT = 30; // Sparks per collision
+
+        // --- STATE VARIABLES ---
+        const scene = document.getElementById('cubeScene');
+        const cube = document.getElementById('cube');
+
+        let x = window.innerWidth / 2 - CUBE_SIZE / 2;
+        let y = window.innerHeight / 2 - CUBE_SIZE / 2;
+        
+        let vx = (Math.random() - 0.5) * 15; // Initial velocity X
+        let vy = (Math.random() - 0.5) * 15; // Initial velocity Y
+        
+        let isDragging = false;
+        let dragStartX, dragStartY;
+        let lastMouseX, lastMouseY;
+        let mouseVelocityX = 0;
+        let mouseVelocityY = 0;
+
+        // --- ANIMATION LOOP ---
+        function animate() {
+            if (!isDragging) {
+                // Apply Physics
+                vx *= FRICTION;
+                vy *= FRICTION;
+                vy += GRAVITY;
+
+                x += vx;
+                y += vy;
+
+                // Boundary Detection (Bouncing)
+                const maxX = window.innerWidth - CUBE_SIZE;
+                const maxY = window.innerHeight - CUBE_SIZE;
+
+                let hitWall = false;
+
+                // Right Wall
+                if (x > maxX) {
+                    x = maxX;
+                    vx = -vx * BOUNCE_FACTOR;
+                    hitWall = true;
+                }
+                // Left Wall
+                else if (x < 0) {
+                    x = 0;
+                    vx = -vx * BOUNCE_FACTOR;
+                    hitWall = true;
+                }
+
+                // Floor
+                if (y > maxY) {
+                    y = maxY;
+                    vy = -vy * BOUNCE_FACTOR;
+                    hitWall = true;
+                }
+                // Ceiling
+                else if (y < 0) {
+                    y = 0;
+                    vy = -vy * BOUNCE_FACTOR;
+                    hitWall = true;
+                }
+
+                // Generate Sparks on Hard Impact
+                if (hitWall && (Math.abs(vx) > 2 || Math.abs(vy) > 2)) {
+                    createSparks(x + CUBE_SIZE/2, y + CUBE_SIZE/2);
+                }
+                
+                // Apply Rotation based on velocity (visual flair)
+                const currentRotX = parseFloat(cube.style.transform.replace(/[^0-9\-.,]/g, '').split(',')[0]) || 0;
+                const currentRotY = parseFloat(cube.style.transform.replace(/[^0-9\-.,]/g, '').split(',')[1]) || 0;
+                
+                cube.style.transform = `rotateX(${currentRotX + vy * 2}deg) rotateY(${currentRotY + vx * 2}deg)`;
+            }
+
+            // Apply Position
+            scene.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+            requestAnimationFrame(animate);
+        }
+
+        // Start Animation
+        animate();
+
+        // --- MOUSE / TOUCH EVENTS (THE "THROW" MECHANIC) ---
+
+        // Helper to get mouse coordinates
+        function getPos(e) {
+            if (e.touches) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        document.addEventListener('mousedown', (e) => {
+            // Check if clicking near the cube
+            const rect = scene.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                
+                isDragging = true;
+                dragStartX = e.clientX;
+                dragStartY = e.clientY;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+                
+                // Stop rotation while holding
+                cube.style.animationPlayState = 'paused';
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+
+                // Calculate velocity based on how fast mouse moves
+                mouseVelocityX = currentX - lastMouseX;
+                mouseVelocityY = currentY - lastMouseY;
+
+                // Update Cube Position
+                x += mouseVelocityX;
+                y += mouseVelocityY;
+
+                // Keep within bounds while dragging
+                const maxX = window.innerWidth - CUBE_SIZE;
+                const maxY = window.innerHeight - CUBE_SIZE;
+                
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                if (x > maxX) x = maxX;
+                if (y > maxY) y = maxY;
+
+                // Update previous position for next frame calculation
+                lastMouseX = currentX;
+                lastMouseY = currentY;
+
+                // Visual feedback: Stop spinning and face mouse slightly
+                const rotX = (y - (window.innerHeight/2)) / 5;
+                const rotY = (x - (window.innerWidth/2)) / 5;
+                cube.style.transform = `rotateX(${30 + rotX}deg) rotateY(${45 + rotY}deg)`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                
+                // Launch the cube with the last calculated mouse velocity
+                vx = mouseVelocityX * 2.5; // Multiplier for "throw power"
+                vy = mouseVelocityY * 2.5;
+
+                // Resume animation
+                cube.style.animationPlayState = 'running';
+
+                // Create sparks on release if thrown hard
+                if (Math.abs(vx) > 10 || Math.abs(vy) > 10) {
+                    createSparks(x + CUBE_SIZE/2, y + CUBE_SIZE/2, '#ffffff');
+                }
+            }
+        });
+        
+        // Touch support for mobile
+        document.addEventListener('touchstart', (e) => {
+             // Simple touch logic (prevent default to stop scrolling)
+             if(e.target === document.body) return;
+             const touch = e.touches[0];
+             const rect = scene.getBoundingClientRect();
+             if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+                touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                
+                isDragging = true; // Simplified drag logic for mobile
+                dragStartX = touch.clientX;
+                dragStartY = touch.clientY;
+                lastMouseX = touch.clientX;
+                lastMouseY = touch.clientY;
+                cube.style.animationPlayState = 'paused';
+             }
+        }, {passive: false});
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                e.preventDefault(); // Prevent scrolling while throwing
+                const touch = e.touches[0];
+                mouseVelocityX = touch.clientX - lastMouseX;
+                mouseVelocityY = touch.clientY - lastMouseY;
+                
+                x += mouseVelocityX;
+                y += mouseVelocityY;
+                
+                const maxX = window.innerWidth - CUBE_SIZE;
+                const maxY = window.innerHeight - CUBE_SIZE;
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                if (x > maxX) x = maxX;
+                if (y > maxY) y = maxY;
+
+                lastMouseX = touch.clientX;
+                lastMouseY = touch.clientY;
+            }
+        }, {passive: false});
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                vx = mouseVelocityX * 2.5;
+                vy = mouseVelocityY * 2.5;
+                cube.style.animationPlayState = 'running';
+            }
+        });
+
+
+        // --- SPARK SYSTEM ---
+        function createSparks(x, y, color = null) {
+            // Randomize spark colors based on rainbow spectrum
+            const hueBase = Math.random() * 360;
+            
+            for (let i = 0; i < SPARK_COUNT; i++) {
+                const spark = document.createElement('div');
+                spark.classList.add('spark');
+                
+                // Set random color (Rainbow or White)
+                if (color) {
+                    spark.style.backgroundColor = color;
+                } else {
+                    const hue = (hueBase + (Math.random() * 60 - 30)) % 360;
+                    spark.style.backgroundColor = `hsl(${hue}, 100%, 70%)`;
+                }
+
+                // Position at impact point
+                spark.style.left = `${x}px`;
+                spark.style.top = `${y}px`;
+
+                // Random direction and speed
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 5 + 2;
+                const tx = Math.cos(angle) * 50 * speed; // travel distance X
+                const ty = Math.sin(angle) * 50 * speed; // travel distance Y
+
+                // Animate manually using Web Animations API for better control than CSS keyframes alone
+                const animation = spark.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px)`, opacity: 0 }
+                ], {
+                    duration: 600 + Math.random() * 400,
+                    easing: 'cubic-bezier(0, .9, .57, 1)',
+                });
+
+                animation.onfinish = () => spark.remove();
+                document.body.appendChild(spark);
+            }
+        }
+
+    </script>
+</body>
+</html>
