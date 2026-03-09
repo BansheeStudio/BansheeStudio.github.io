@@ -60,7 +60,7 @@ z-index:0;
             margin: 0;
             overflow: hidden;
             background-image: url("background.png");
-            /*background-color: #111; /* Dark background to see sparks */
+            background-color: #111; /* Dark background to see sparks */
             font-family: sans-serif;
             cursor: grab; /* Cursor */
             user-select: none;
@@ -198,6 +198,35 @@ z-index:0;
     </div>
 
     <script>
+	
+	/* ANIMATED TITLE */
+	
+const titleText = "Banshee's Realm";
+let index = 0;
+let deleting = false;
+
+function animateTitle() {
+
+    if (!deleting) {
+        document.title = titleText.substring(0, index++);
+        
+        if (index > titleText.length) {
+            deleting = true;
+            setTimeout(animateTitle, 1200); // pause before deleting
+            return;
+        }
+    } else {
+        document.title = titleText.substring(0, index--);
+
+        if (index < 0) {
+            deleting = false;
+        }
+    }
+
+    setTimeout(animateTitle, deleting ? 80 : 120);
+}
+
+animateTitle();
 	
 	/* UNLOCK SCREEN + MUSIC */
 
