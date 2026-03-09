@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlushBanshee's Realm</title>
+	
+	<div id="splash">
+    <div class="splash-text">
+        Click to unlock
+    </div>
+	</div>
 	<audio autoplay loop>
     <source src="music.mp3" type="audio/mpeg">
 	</audio>
+	<script>
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    music.muted = false;
+});
+	</script>
     <style>
         :root {
             --cube-size: 150px;
