@@ -201,32 +201,30 @@ z-index:0;
 	
 	/* ANIMATED TITLE */
 	
-const titleText = "Banshee's Realm";
-let index = 0;
-let deleting = false;
+document.addEventListener("DOMContentLoaded", function () {
+      const fullTitle = "Banshee's Realm";
+      let titleArray = fullTitle.split(""); // array of letters
+      let index = titleArray.length; // start from full title
+      let shrinking = true; // start by shrinking
 
-function animateTitle() {
-
-    if (!deleting) {
-        document.title = titleText.substring(0, index++);
-        
-        if (index > titleText.length) {
-            deleting = true;
-            setTimeout(animateTitle, 1200); // pause before deleting
-            return;
+      function animateTitle() {
+        if (shrinking) {
+          index--;
+          if (index <= 1) { // stop at first letter
+            shrinking = false;
+          }
+        } else {
+          index++;
+          if (index >= titleArray.length) { // back to full
+            shrinking = true;
+          }
         }
-    } else {
-        document.title = titleText.substring(0, index--);
 
-        if (index < 0) {
-            deleting = false;
-        }
-    }
+        document.title = titleArray.slice(0, index).join("");
+      }
 
-    setTimeout(animateTitle, deleting ? 80 : 120);
-}
-
-animateTitle();
+      setInterval(animateTitle, 100); // adjust speed here
+    });
 	
 	/* UNLOCK SCREEN + MUSIC */
 
