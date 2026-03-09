@@ -4,23 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlushBanshee's Realm</title>
-	
-	<div id="splash">
-    <div class="splash-text">
-        Click to unlock
-    </div>
-	</div>
-	<audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-	</audio>
-	<script>
-const music = document.getElementById("bgMusic");
 
-window.addEventListener("load", () => {
-    music.muted = false;
-});
-	</script>
+
     <style>
+	
+	/* SPLASH SCREEN */
+
+#splash{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+cursor:pointer;
+}
+
+#unlockText{
+color:white;
+font-size:42px;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:.4}
+50%{opacity:1}
+100%{opacity:.4}
+}
+
+/* HINT TEXT */
+
+.hint{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:rgba(255,255,255,.5);
+pointer-events:none;
+text-align:center;
+z-index:0;
+}
+	
         :root {
             --cube-size: 150px;
             --anim-speed: 2s;
@@ -139,6 +164,18 @@ window.addEventListener("load", () => {
 </head>
 <body>
 
+<!-- SPLASH SCREEN -->
+
+<div id="splash">
+<div id="unlockText">Click to unlock</div>
+</div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
     <div class="hint">
         <h1><img src="PlushBanshee.png"></h1>
         <p>Welcome to my website.<br>also you can throw around the cube have fun<3</p>
@@ -156,6 +193,23 @@ window.addEventListener("load", () => {
     </div>
 
     <script>
+	
+	/* UNLOCK SCREEN + MUSIC */
+
+const splash=document.getElementById("splash");
+const music=document.getElementById("bgMusic");
+
+splash.addEventListener("click",()=>{
+music.play();
+splash.style.opacity="0";
+
+setTimeout(()=>{
+splash.style.display="none";
+},500);
+
+});
+	
+	
         // --- CONFIGURATION ---
         const CUBE_SIZE = 150; // Must match CSS --cube-size
         const BOUNCE_FACTOR = 0.85; // Energy kept after bounce (0 to 1), default 
